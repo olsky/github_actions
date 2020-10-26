@@ -1,0 +1,15 @@
+name: 'github-action-olsky-docker-build-gnuarmemb'
+description: 'Build a projects arm embedded'
+author: 'olsky'
+branding:
+  icon: settings
+  color: blue
+inputs:
+  builder:
+    description: 'The path to the build-script to run, within the repository.'
+    default: '.github/build'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+      - ${{ inputs.builder }}
