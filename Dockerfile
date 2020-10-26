@@ -4,14 +4,15 @@ LABEL Description="Docker for arm-gcc-embedded projects"
 
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
+
 ENV DEBIAN_FRONTEND noninteractive
 
 ENV DISTRIB_CODENAME bionic
 
 
 
-RUN sudo apt-get update -y
-RUN apt-get install -y  cmake  make  automake  python-setuptools  ninja-build  python-dev  libffi-dev  libssl-dev  software-properties-common python-software-properties
+RUN apt-get update -y
+RUN apt-get install -y wget curl cmake  make  automake ninja-build  python-dev  libffi-dev  libssl-dev 
 RUN apt-get -y upgrade
 
 # 9-2020-q2-update
