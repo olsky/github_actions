@@ -15,11 +15,11 @@ RUN apt-get install -y  cmake  make  automake  python-setuptools  ninja-build  p
 RUN apt-get -y upgrade
 
 # 9-2020-q2-update
-RUN wget -q -P gnuarmemb https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
-RUN cd gnuarmemb && tar xjf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+RUN wget -q -P $HOME/gnuarmemb https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+RUN cd $HOME/gnuarmemb && tar xjf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
 
-RUN export PATH=$PATH:/home/ubuntu/gnuarmemb/gcc-arm-none-eabi-9-2020-q2-update/bin
+RUN export PATH=$PATH:$HOME/gnuarmemb/gcc-arm-none-eabi-9-2020-q2-update/bin
 
-COPY build /home/ubuntu/build
+COPY build $HOME/entrypoint_builder.sh
 
-ENTRYPOINT ["/home/ubuntu/build"]
+ENTRYPOINT ["$HOME/entrypoint_builder.sh"]
